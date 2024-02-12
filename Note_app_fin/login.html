@@ -1,0 +1,55 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body{
+            height: 100%;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://images.unsplash.com/photo-1706953608349-4333b9707277?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');    
+        }
+        .container{
+            margin-right: 450px;
+            margin-bottom: 400px;
+            box-shadow: 20px 20px 50px rgba(0,0,0,0.5);
+            background: rgba(255,255 ,255,0.1);
+            border-radius: 12px;
+            margin-top: 150px;
+            margin-left: 609px;
+        }
+    </style>
+</head>
+<body>
+ <div class="container">
+    <form action="">
+        <h1>LOGIN ARENA</h1>
+        Enter E-Mail Id:<input type="email" id="email"><br><br>
+        Enter Password:<input type="password" id="password"><br><br>
+        <input type="button" onclick="Submit()" value="submit">
+        <a href="register.html">New Register</a>
+    </form>
+</div>
+
+</body>
+<script>
+function Submit(){
+    let email=document.getElementById("email").value;
+    let password=document.getElementById("password").value;
+    let user_record=new Array();
+    user_record=JSON.parse(localStorage.getItem("users"))?JSON.parse(localStorage.getItem("users")):[]
+    if (user_record.some((v)=>{return v.email==email && v.password==password})){
+    alert("Login Sucess")
+    let current_user=user_record.filter((v)=>{return v.email==email && v.password==password})[0]
+    localStorage.setItem("name",current_user.name)
+    localStorage.setItem("email",current_user.email)
+    window.location.href="notes_app.html";
+}
+    else{
+        alert("If you are new user please register or May be Incorrect password or login")
+    }
+    }
+</script>
+</html>
